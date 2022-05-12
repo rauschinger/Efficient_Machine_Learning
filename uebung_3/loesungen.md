@@ -1,10 +1,10 @@
-Serie 3 Pytorch Tensoren
+# Serie 3 Pytorch Tensoren
 
-Aufgabenstellung:  
+## Aufgabenstellung:  
 
-3.1 Tensors
+### Tensors
 
-Creation
+### Creation
 
 1. Try different tensor-generating functions and illustrate their behavior. Include torch.zeros, torch.ones, torch.rand and torch.ones_like in your tests.  
 
@@ -12,7 +12,7 @@ Creation
 
 3. Once again start with your Python-native representation of T. This time use numpy.convert to convert it to a NumPy array first. Then create a PyTorch tensor from the NumPy array and print both.
 
-Opertaions
+### Opertaions
 
 1. Generate the rank-2 tensors P and Q in PyTorch. Illustrate the behavior of element-wise operations on P and Q. Try at least torch.add and torch.mul. Show that you may also perform element-wise addition or multiplication through the overloaded binary operators + and *.
 
@@ -29,7 +29,7 @@ Opertaions
         1   l_tmp = l_tensor_1.clone().detach()  
         2   l_tmp[:] = 0  
 
-Storage
+### Storage
 
 1. Create a PyTorch tensor from the rank-3 tensor T given in Eq. (3.1.1). Print the tensor’s size and stride. Print the tensor’s attributes, i.e., its dtype, layout and device.
 
