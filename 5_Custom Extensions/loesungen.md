@@ -2,6 +2,9 @@
 
 ## Aufgabenstellung
 
+
+![Alt-Text](https://github.com/rauschinger/Efficient_Machine_Learning/blob/main/5_Custom%20Extensions/aufgabenstellung.png)
+
 1. Assume the following exemplary data for the input batch X, the weights W, and the vector-Jacobian product batch of the loss function L w.r.t. the output batch Y:
 
  
