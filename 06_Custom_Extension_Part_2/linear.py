@@ -2,6 +2,7 @@
 import torch
 import torch.nn
 import eml.ext.linear_python
+import eml.ext.linear_cpp
 
 print( '##########################' )
 print( '## linear layer example ##' )
@@ -60,3 +61,15 @@ print( 'dl_dx:' )
 print( l_x.grad )
 print( 'dl_dw:' )
 print( l_linear_eml_python.m_weights.grad )
+
+
+print( '#####################################' )
+print( '## EML linear python layer example ##' )
+print( '#####################################' )
+l_w = torch.tensor( [ [1.0, 2.0, 3.0],
+                      [4.0, 5.0, 6.0] ],
+                    requires_grad = True )
+
+l_x = torch.tensor( [ [7.0, 8.0, 9.0],
+                      [10.0, 11.0, 12.0] ],
+                    requires_grad = True )
