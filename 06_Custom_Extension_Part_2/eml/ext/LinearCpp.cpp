@@ -31,4 +31,7 @@ PYBIND11_MODULE( TORCH_EXTENSION_NAME,
     io_module.def( "forward",
                     &forward,
                     "Forward Pass of our C++ extension");
+    io_module.def( "backward",
+                    &backward,
+                    "Backward Pass of our C++ extension");
 }
