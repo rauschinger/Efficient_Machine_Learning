@@ -1,2 +1,0 @@
-eml_ext_hello_world_cpp
-eml_ext_linear_cpp
