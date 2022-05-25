@@ -50,5 +50,13 @@ l_linear_eml_python.m_weights = torch.nn.Parameter( l_w.transpose( 0, 1 ) )
 
 l_result = l_linear_eml_python.forward( l_x )
 
+l_grad = torch.tensor( [ [ 1.0, 2.0 ],
+                         [ 3.0, 4.0 ] ] )
+l_result.backward( l_grad )
+
 print( 'result:' )
 print( l_result )
+print( 'dl_dx:' )
+print( l_x.grad )
+print( 'dl_dw:' )
+print( l_linear_eml_python.m_weights.grad )
