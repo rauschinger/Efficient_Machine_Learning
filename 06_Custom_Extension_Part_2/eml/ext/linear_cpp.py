@@ -9,9 +9,14 @@ class Function( torch.autograd.Function ):
                     i_weights ):
               io_ctx.save_for_backward( i_input,
                                         i_weights )
+
+
+              l_input = i_input.contigous()
+              l_weights = i_weights.contigous()
+              l_output = eml_ext_linear_cpp.forward( i_input,
+                                                     i_weights )
+
               
-              l_output = torch.matmul( i_input,
-                                       i_weights )
 
               return l_output
 

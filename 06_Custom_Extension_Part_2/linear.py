@@ -64,7 +64,7 @@ print( l_linear_eml_python.m_weights.grad )
 
 
 print( '#####################################' )
-print( '## EML linear python layer example ##' )
+print( '## EML linear CPP layer example ##' )
 print( '#####################################' )
 l_w = torch.tensor( [ [1.0, 2.0, 3.0],
                       [4.0, 5.0, 6.0] ],
@@ -73,3 +73,13 @@ l_w = torch.tensor( [ [1.0, 2.0, 3.0],
 l_x = torch.tensor( [ [7.0, 8.0, 9.0],
                       [10.0, 11.0, 12.0] ],
                     requires_grad = True )
+
+l_linear_eml_cpp = eml.ext.linear_cpp.Layer( 3,
+                                             2 )
+l_linear_eml_cpp.m_weights = torch.nn.Parameter( l_w.transpose( 0, 1 ) )
+
+l_result = l_linear_eml_cpp.forward( l_x )
+
+print( 'result:' )
+print( l_result )
+
