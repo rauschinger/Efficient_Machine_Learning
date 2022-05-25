@@ -1,6 +1,31 @@
 import torch.autograd
 import torch.nn
 
+class Function( torch.autograd.Function ):
+       @staticmethod
+       def forward( io_ctx,
+                    i_input,
+                    i_weights ):
+              io_ctx.save_for_backward( i_input,
+                                        i_weights )
+              
+              l_output = torch.matmul( i_input,
+                                       i_weights )
+
+              return l_output
+
+       @staticmethod
+       def backward( io_ctx,
+                     i_grad_output ):
+              l_input, l_weights = io_ctx.saved_tensors
+
+              l_grad_input = torch.matmul( i_grad_output,
+                                           l_weights.transpose(0, 1) )
+              
+              l_grad_weights = torch.matmul( l_input.transpose(0, 1),
+                                             i_grad_output )
+              return l_grad_input, l_grad_weights
+
 ## @package eml.ext.linear_python.Layer
 #  Custom implementation of a linear layer in python.
 class Layer( torch.nn.Module ):
