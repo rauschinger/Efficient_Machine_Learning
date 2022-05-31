@@ -1,6 +1,9 @@
 #include "MatmulLibxsmm.h"
 #include <libxsmm.h>
 
+
+//TODO: library aufrufe 
+
 at::Tensor mini_dnn::backend::MatmulLibxsmm::forward( at::Tensor i_x,
                                                       at::Tensor i_w ) {
   // get involved sizes
@@ -8,10 +11,13 @@ at::Tensor mini_dnn::backend::MatmulLibxsmm::forward( at::Tensor i_x,
                                             i_w );
 
   // create LIBXSMM kernel (isolated)
+  //JITter wird aufgerufen
   libxsmm_gemm_shape l_shape_brgemm;
   libxsmm_bitfield l_flags_brgemm = LIBXSMM_GEMM_FLAGS('N', 'N');
   libxsmm_bitfield l_prefetch_flags_brgemm = 0;
   
+
+  //umbennenung der matrixgrößen M,N,K
   libxsmm_blasint l_m = l_sizes.bn;
   libxsmm_blasint l_n = l_sizes.bk;
   libxsmm_blasint l_k = l_sizes.bc;
@@ -20,6 +26,8 @@ at::Tensor mini_dnn::backend::MatmulLibxsmm::forward( at::Tensor i_x,
   libxsmm_blasint l_ldb = l_k;
   libxsmm_blasint l_ldc = l_m;
 
+
+  //lda, ldb und ldc sind die leading dimensions
   l_shape_brgemm = libxsmm_create_gemm_shape( l_m,
                                               l_n,
                                               l_k,
@@ -37,7 +45,11 @@ at::Tensor mini_dnn::backend::MatmulLibxsmm::forward( at::Tensor i_x,
   l_brconfig.br_stride_b_hint = 0;
   l_brconfig.br_unroll_hint = 0;
 
+
+
   libxsmm_xmmfunction l_kernel_forward;
+
+  //l_kernel_forward.gemm ist ein Funktionspointer. D.h hier kann später &l_param übergeben werden
   l_kernel_forward.gemm = libxsmm_dispatch_brgemm_v2( l_shape_brgemm,
                                                       l_flags_brgemm,
                                                       l_prefetch_flags_brgemm,
@@ -71,6 +83,7 @@ at::Tensor mini_dnn::backend::MatmulLibxsmm::forward( at::Tensor i_x,
         // TODO: compute offset in B
 
         // TODO: call JITted kernels
+        //d.h. code einkommentieren und pointer richtig setzen
         // if the offsets are in l_offset_a, l_offset_b, l_offset_c
         // pass the pointers to the kernel through:
         //

@@ -88,6 +88,8 @@ int main() {
   MINI_DNN_LOG_INFO << "running performance tests" << std::endl;
 
   // sizes of the input
+
+  //diese größen müssen noch auf VGG angepasst werden (4096x4096)
   int64_t l_size_n = 128;
   int64_t l_size_k = 768;
   int64_t l_size_c = 512;
@@ -133,6 +135,8 @@ int main() {
   MINI_DNN_LOG_INFO << "benchmarking MatmulReluAten.." << std::endl;
   mini_dnn::backend::MatmulReluAten l_matmul_relu_aten;
 
+
+  //l_input_col_major = X, l_weight_col_major = W, l_matmul_relu_aten = Matmul Funktion
   std::tie( l_n_repetitions,
             l_time,
             l_gflops ) = benchMatmul( l_input_col_major,
@@ -145,4 +149,7 @@ int main() {
 
   // TODO: benchmark the performance of your new implementations, i.e.,
   //       MatmulAtenBlocked nad MatmulLibxsmm
+  //Dazu Zeile 132 - 148 kopieren und wieder einfügen mit anpassung dass die MatmulAtenBlocked MatmulLibxsmm aufgerufen werden
+
+
 }

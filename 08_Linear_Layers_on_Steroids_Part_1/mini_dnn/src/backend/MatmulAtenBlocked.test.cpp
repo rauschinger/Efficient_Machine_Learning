@@ -22,8 +22,19 @@ TEST_CASE( "Tests the Matmul forward operator through blocked Aten calls.",
   int64_t l_size_cb = l_size_c / l_size_bc;
 
   // construct input tensors
+  // X and W are column major matrices, therefore here exists no blocking
   at::Tensor l_x = at::rand( { l_size_n, l_size_c } );
   at::Tensor l_w = at::rand( { l_size_c, l_size_k } );
+
+
+  //                                           0          1          2          3
+  at::Tensor l_x_blocked = l_x.view( {l_sized_nb, l_size_bn, l_size_cb, l_size_bc} );
+  l_x_blocked = l_x_blocked.permute( 0, 2, 3, 1 ).contiguous(); // x_blocked hat nun gewünschtes internes datenformat. Mit beispielsweise l_x_blocked[0,0] spingt man über die blöcke (dies muss noch in MatmulAtenBlocked.cpp implementiert werden)
+
+  //mit Y muss das gleiche rückwarts gemacht werden, d.h erst permutieren, neue view definieren und contiguous aufrufen
+
+
+  l_x_blocked(0,0)
 
   // TODO:
   //   1) derive blocked X and W

@@ -11,5 +11,11 @@ at::Tensor mini_dnn::backend::MatmulAtenBlocked::forward( at::Tensor i_x,
 
   // TODO: finished blocked ATen implementation
 
+
+  //01:05
+  //über anzahl der blöcke iterieren
+  //ATen aufrufen
+  //i_x[0][0]
+  //hier müssen wir transponieren da wir column major sind
   return l_output;
 }
