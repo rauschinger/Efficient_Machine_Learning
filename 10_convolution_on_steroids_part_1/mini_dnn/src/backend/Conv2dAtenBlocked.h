@@ -13,7 +13,7 @@ namespace mini_dnn {
 /**
  * Conv2d backend using the Aten library.
  **/
-class mini_dnn::backend::Conv2dAten: public Conv2d {
+class mini_dnn::backend::Conv2dAtenBlocked: public Conv2d {
   private:
   public:
     /**
