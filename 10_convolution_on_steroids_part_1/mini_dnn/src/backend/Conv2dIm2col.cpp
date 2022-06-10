@@ -37,7 +37,7 @@ at::Tensor mini_dnn::backend::Conv2dIm2col::forward( at::Tensor i_input,
   
   
   // multiply tensor with weights
-  std::cout << "i_weight: " << i_weight.szes() << std::endl;
+  std::cout << "i_weight: " << i_weight.sizes() << std::endl;
   
   at::Tensor l_weight = at::flatten( i_weight, 1 );
   
